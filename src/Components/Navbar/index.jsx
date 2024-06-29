@@ -13,6 +13,8 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   //Referencia al contenedor del input de búsqueda para detectar clics fuera de él.
   const searchRef = useRef(null);
+  // Estado para controlar si se ha hecho scroll en la página
+  const [isScrolled, setIsScrolled] = useState(false);
 
   //Alterna el estado isSearchOpen para abrir o cerrar el input.
   const handleSearchClick = () => {
@@ -32,6 +34,25 @@ const Navbar = () => {
       document.addEventListener("mousedown", handleClickOutside)
     }
   },[])
+
+  // Efecto para agregar el listener de scroll y actualizar el estado isScrolled
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    // Agregar listener de scroll al montar el componente
+    window.addEventListener("scroll", handleScroll);
+
+    // Limpiar listener al desmontar el componente
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -80,7 +101,7 @@ const Navbar = () => {
       </nav>
 
       {/* //Creando navbar para desktop */}
-      <nav className=" fixed hidden lg:flex p-3 z-50 left-0 right-0 m-3 text-white justify-between">
+      <nav className={`hidden fixed lg:flex p-3 z-50 left-0 right-0 m-3 text-white justify-between ${isScrolled ? 'bg-primary transition-all m-3 rounded-xl' : ''}`}>
         {/* Logo */}
         <div className="flex items-center gap-3 justify-center text-2xl font-bold">
           <PiLampPendantFill />
@@ -121,7 +142,7 @@ const Navbar = () => {
                 className={`p-2 px-5 rounded-full transition-all text-primary ${isSearchOpen ? 'slide-in' : 'slide-out'}`}
               />
             )}
-            <IoSearch className="text-2xl absolute text-white hover:text-black right-3 rounded-full" onClick={handleSearchClick}/>
+            <IoSearch className="text-2xl absolute text-white right-3 rounded-full" onClick={handleSearchClick}/>
           </div>
           <FaShoppingBag className="text-2xl"/>
           <button className="bg-white text-primary px-3 py-2 rounded-full">Iniciar sesion</button>
