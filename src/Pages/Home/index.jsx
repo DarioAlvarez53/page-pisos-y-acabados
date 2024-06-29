@@ -1,3 +1,5 @@
+import CustomCarousel from "../../Components/CarouselImage"
+
 const Home = () => {
   return (
     <>
@@ -19,7 +21,10 @@ const Home = () => {
             <h1 className="flex font-bold text-2xl lg:w-1/4 lg:text-center lg:items-center lg:justify-center lg:border-r lg:border-r-primary">
               Espacios
             </h1>
-            <p className="lg:w-3/4  lg:p-10">Tenemos infinidad de ideas para tu nuevo proyecto. Combinaciones únicas para pisos, paredes, baños y cocinas. No importa si buscas ideas sobre colores o texturas, interiores o exteriores, tenemos una opción diferente para cada ambiente con nuestros productos.</p>
+            <p className="lg:w-3/4  lg:p-10 pt-2">Combinaciones únicas para pisos, paredes, baños y cocinas. No importa si buscas ideas sobre colores o texturas, interiores o exteriores, tenemos una opción diferente para cada ambiente con nuestros productos.</p>
+        </div>
+        <div>
+          <CustomCarousel />
         </div>
       </div>
     </>

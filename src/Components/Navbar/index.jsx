@@ -54,7 +54,7 @@ const Navbar = () => {
       </div>
 
       {/* Creando navbar para mobile */}
-      <nav className="fixed lg:hidden bottom-0 left-0 right-0 glass m-3 text-primary">
+      <nav className="fixed z-50 lg:hidden bottom-0 left-0 right-0 glass m-3 text-primary">
         <ul className="flex justify-between px-5 py-4 text-2xl md:px-16 md:py-5 md:text-3xl">
           <li>
             <Link>
